@@ -16,8 +16,6 @@ public class ContactService {
      boolean is_saved = false;
 //     log.info(contact.toString());
         contact.setStatus("OPEN");
-        contact.setCreatedBy("Rahoma");
-        contact.setCreatedAt(LocalDateTime.now());
         Contact result = contactRepository.save(contact);
         if (result != null) {
             is_saved = true;
