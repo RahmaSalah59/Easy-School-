@@ -3,7 +3,7 @@ package com.example.demo.Controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import  com.example.demo.model.Holiday;
+import  com.example.demo.Entity.Holiday;
 
 import java.util.Arrays;
 import java.util.List;
