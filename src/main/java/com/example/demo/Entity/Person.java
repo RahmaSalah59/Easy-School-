@@ -2,18 +2,13 @@ package com.example.demo.Entity;
 
 import com.example.demo.annotation.FieldValueValidator;
 import com.example.demo.annotation.PasswordValidator;
+import lombok.Data;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -29,7 +24,7 @@ import java.time.LocalDateTime;
                 message = "Email addresses do not match!"
         )
 })
-public class Person {
+public class Person extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int personId;
@@ -61,19 +56,12 @@ public class Person {
     @Transient
     private String confirmPwd;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Address.class)
+    @JoinColumn(name = "address_id", referencedColumnName = "ID", nullable = true)
+    private Address address;
 
-    @CreatedBy
-    @Column(updatable = false)
-    private String createdBy;
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST , targetEntity = Roles.class)
+    @JoinColumn(name = "role_id" , referencedColumnName = "roleId" , nullable = false)
+    private Roles roles;
 
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime updatedAt;
-
-    @LastModifiedBy
-    @Column(insertable = false)
-    private String updatedBy;
 }

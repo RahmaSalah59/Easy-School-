@@ -14,8 +14,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name="contact_msg")
-@EntityListeners(AuditingEntityListener.class)
-public class Contact {
+public class Contact extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO ,generator= "native")
@@ -27,19 +26,5 @@ public class Contact {
     private String message;
     private String status;
 
-    @CreatedDate
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
 
-    @CreatedBy
-    @Column(updatable = false)
-    private String createdBy;
-
-    @LastModifiedDate
-    @Column(insertable = false)
-    private LocalDateTime updatedAt;
-
-    @LastModifiedBy
-    @Column(insertable = false)
-    private String updatedBy;
 }

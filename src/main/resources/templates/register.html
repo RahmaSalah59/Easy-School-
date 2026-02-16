@@ -46,7 +46,7 @@ Author URL: http://w3layouts.com
             <div class="row login-block">
                 <div class="col-md-7 login-center">
                     <ul>
-<!--                        <li class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('person.*')}" th:text="${error}"></li>-->
+                        <li class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('person.*')}" th:text="${error}"></li>
                     </ul>
                     <form th:action="@{/public/createUser}" method="post" class="signin-form" th:object="${person}">
                         <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
@@ -56,7 +56,7 @@ Author URL: http://w3layouts.com
                             <div class="row">
                                 <div class="col-sm-6">
                                     <input type="text" th:field="*{name}" placeholder="Name"
-                                        class="contact-input" />
+                                        class="contact-input"  />
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" th:field="*{mobileNumber}" placeholder="Mobile Number"
