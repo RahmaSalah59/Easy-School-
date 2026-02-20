@@ -9,8 +9,12 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
 @Entity
 @FieldValueValidator.List({
         @FieldValueValidator(
@@ -56,12 +60,18 @@ public class Person extends BaseEntity{
     @Transient
     private String confirmPwd;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Address.class)
-    @JoinColumn(name = "address_id", referencedColumnName = "ID", nullable = true)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Address.class)
+    @JoinColumn(name = "address_id", referencedColumnName = "address_id", nullable = true)
     private Address address;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST , targetEntity = Roles.class)
     @JoinColumn(name = "role_id" , referencedColumnName = "roleId" , nullable = false)
     private Roles roles;
+
+
+    @ManyToOne(fetch = FetchType.LAZY , optional = true)
+    @JoinColumn(name = "class_id" , referencedColumnName = "class_id" , nullable = true)
+    @ToString.Exclude
+    private EazyClass eazyClass;
 
 }

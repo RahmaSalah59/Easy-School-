@@ -12,7 +12,11 @@ public class DashboardController {
     public String showDashboard (Model model, Authentication authentication){
 
         model.addAttribute("username", authentication.getName());
-        model.addAttribute("roles", authentication.getAuthorities().toString());
+        model.addAttribute("roles",authentication.getAuthorities().toString());
+        if(authentication.getAuthorities().toString().equals("[ROLE_ADMIN]"))
+            model.addAttribute("check",true);
+        else
+            model.addAttribute("check" , false);
 
         return  "dashboard.html";
     }

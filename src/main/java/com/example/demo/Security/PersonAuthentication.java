@@ -34,7 +34,7 @@ public class PersonAuthentication implements AuthenticationProvider {
         Person user = personRepository.findPersonByEmail(email);
         if(user != null && user.getPersonId()> 0 && passwordEncoder.matches(password,user.getPwd())){
             return  new UsernamePasswordAuthenticationToken
-            (user.getName() , user.getPwd() , GetRoles(user.getRoles()));
+            (user.getName() , null , GetRoles(user.getRoles()));
         }
         else
             throw new BadCredentialsException("Invalid credentials!");
@@ -42,7 +42,7 @@ public class PersonAuthentication implements AuthenticationProvider {
 
     public List<GrantedAuthority> GetRoles(Roles role){
         List<GrantedAuthority> list = new ArrayList<>();
-        list.add(new SimpleGrantedAuthority("Role_"+role.getRoleName()));
+        list.add(new SimpleGrantedAuthority("ROLE_"+role.getRoleName()));
         return list;
     }
 

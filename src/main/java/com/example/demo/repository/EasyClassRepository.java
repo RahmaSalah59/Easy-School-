@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PersonRepository extends JpaRepository<Person,Integer> {
-    Person findPersonByEmail (String email);
-
+public interface EasyClassRepository extends JpaRepository<EazyClass,Integer> {
+    EazyClass findById(int ID);
 }
